@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="MainActivity_db_error">Database is corrupt. Please contact &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
+    <string name="MainActivity_other_error">An error occurred while refreshing. Details:&lt;br/>%s</string>
+    <string name="MainActivity_refreshing">Refreshing…</string>
+    <string name="MainLayout_add">Add</string>
+    <string name="MainLayout_nothing_to_show">Nothing to show. Please refresh!</string>
+    <string name="MainLayout_refresh">Refresh</string>
+    <string name="app_name">Project A.K.B.</string>
+</resources>

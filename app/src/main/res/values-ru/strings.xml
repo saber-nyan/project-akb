@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="MainActivity_db_error">База данных повреждена. Пожалуйста, свяжитесь с &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
+    <string name="MainActivity_other_error">Произошла ошибка при обновлении. Детали:&lt;br/>%s</string>
+    <string name="MainActivity_refreshing">Обновление…</string>
+    <string name="MainLayout_add">Добавить</string>
+    <string name="MainLayout_nothing_to_show">Нечего показать. Пожалуйста, обновите!</string>
+    <string name="MainLayout_refresh">Обновить</string>
+    <string name="app_name">Проект А.К.Б.</string>
+</resources>
