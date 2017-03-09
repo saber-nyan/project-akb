@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prefKey_API_URL" translatable="false">pref_API_URL</string>
+</resources>

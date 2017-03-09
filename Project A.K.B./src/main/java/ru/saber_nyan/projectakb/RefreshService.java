@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -20,7 +21,7 @@ import java.net.URL;
 public class RefreshService extends Service {
 
 	public static final String TAG = RefreshService.class.getSimpleName();
-	public static final String URL_API_PULL = MainActivity.URL_API + "/pull";
+	public static String URL_API_DEFAULT;
 
 	public RefreshService() {
 	}
@@ -33,9 +34,12 @@ public class RefreshService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(TAG, "service start");
-		Log.d(TAG, "pull url: " + URL_API_PULL);
+		URL_API_DEFAULT = getString(R.string.prefDef_API_URL);
+		String URL_API = PreferenceManager.getDefaultSharedPreferences(this)
+				.getString(getString(R.string.prefKey_API_URL), URL_API_DEFAULT);
+		Log.d(TAG, "url: " + URL_API);
 		DownloadTask task = new DownloadTask();
-		task.execute();
+		task.execute(URL_API + "/pull");
 		return super.onStartCommand(intent, flags, startId);
 	}
 
@@ -50,17 +54,17 @@ public class RefreshService extends Service {
 		stopSelf();
 	}
 
-	private class DownloadTask extends AsyncTask<Void, Void, Void> {
+	private class DownloadTask extends AsyncTask<String, Void, Void> {
 
 		private final String TAG = DownloadTask.class.getSimpleName();
 		private final String JSON_KEY_STATUS = "status";
 		private final String JSON_KEY_TEXT = "text";
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Void doInBackground(String... params) {
 			HttpURLConnection connection;
 			try {
-				connection = (HttpURLConnection) new URL(URL_API_PULL).openConnection();
+				connection = (HttpURLConnection) new URL(params[0]).openConnection();
 			} catch (Exception e) {
 				Log.e(TAG, "connection error:", e);
 				returnResult(true, e.getLocalizedMessage());

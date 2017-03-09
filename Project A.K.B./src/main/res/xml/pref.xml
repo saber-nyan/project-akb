@@ -1,0 +1,10 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/prefTitle_settings">
+
+    <EditTextPreference
+        android:defaultValue="@string/prefDef_API_URL"
+        android:key="@string/prefKey_API_URL"
+        android:summary="@string/prefsummary_API_URL"
+        android:title="@string/prefTitle_API_URL"/>
+</PreferenceScreen>
