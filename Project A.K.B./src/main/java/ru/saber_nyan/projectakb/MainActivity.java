@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	public static final String BROADCAST_TEXT_TAG = "text";
 	public TextView textView_anek;
 
+	@SuppressWarnings("deprecation")
 	private BroadcastReceiver refreshReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -29,9 +31,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			String text = intent.getStringExtra(BROADCAST_TEXT_TAG);
 			if (isError) {
 				if (text.equals("DefectiveDatabase")) {
-					textView_anek.setText(R.string.MainActivity_db_error);
+					textView_anek.setText(Html.fromHtml(getString(R.string.MainActivity_db_error)));
 				} else {
-					textView_anek.setText(String.format(getString(R.string.MainActivity_other_error), text));
+					textView_anek.setText(Html.fromHtml(
+							String.format(getString(R.string.MainActivity_other_error), text)));
 				}
 			} else {
 				textView_anek.setText(text);
@@ -61,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	protected void onResume() {
 		super.onResume();
 		Log.v(TAG, "onResume called");
-		LocalBroadcastManager.getInstance(this).registerReceiver(refreshReceiver, new IntentFilter(BROADCAST_TAG));
+		LocalBroadcastManager.getInstance(this).registerReceiver(refreshReceiver,
+				new IntentFilter(BROADCAST_TAG));
 	}
 
 	@Override
