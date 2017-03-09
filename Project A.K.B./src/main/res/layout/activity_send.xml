@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_rootScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.saber_nyan.projectakb.SendActivity">
+
+    <RelativeLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layoutPadding">
+
+        <Spinner
+            android:id="@+id/spinner_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layoutPadding"
+            android:entries="@array/SendLayout_spinner"
+            android:padding="@dimen/layoutPadding"
+            android:prompt="@string/SendLayout_spinner_desc"/>
+
+        <TextView
+            android:id="@+id/textView_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner_mode"
+            android:layout_margin="0dp"
+            android:gravity="start"
+            android:padding="@dimen/layoutPadding"
+            android:text="@string/SendLayout_textView_description_character"
+            android:textAlignment="textStart"/>
+    </RelativeLayout>
+</ScrollView>

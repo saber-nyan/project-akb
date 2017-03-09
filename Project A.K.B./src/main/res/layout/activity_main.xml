@@ -28,7 +28,7 @@
             android:layout_below="@id/textView_anek"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/layoutPadding"
-            android:padding="20dp"
+            android:padding="@dimen/buttonPadding"
             android:text="@string/MainLayout_refresh"
             android:textSize="18sp"/>
 
@@ -40,7 +40,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/layoutPadding"
             android:fontFamily="sans-serif"
-            android:padding="20dp"
+            android:padding="@dimen/buttonPadding"
             android:text="@string/MainLayout_add"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"

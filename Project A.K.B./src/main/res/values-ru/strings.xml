@@ -9,6 +9,13 @@
     <string name="MainLayout_refresh">Обновить</string>
     <string name="app_name">Проект А.К.Б.</string>
     <string name="prefTitle_settings">Настройки</string>
-    <string name="prefsummary_API_URL">Не трогайте! Умолчание — http://roctbb.net:1337/api</string>
+    <string name="prefsummary_API_URL">Не трогайте! По умолчанию — http://roctbb.net:1337/api</string>
     <string name="MainActivity_quit">Выйти</string>
+    <string-array name="SendLayout_spinner">
+        <item>Персонаж</item>
+        <item>Предмет</item>
+        <item>История</item>
+    </string-array>
+    <string name="SendLayout_spinner_desc">Тип контента</string>
+    <string name="SettingsLayout_add">Добавить…</string>
 </resources>

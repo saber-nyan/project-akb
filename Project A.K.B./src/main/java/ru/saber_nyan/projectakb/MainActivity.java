@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				break;
 			case R.id.button_add:
 				Log.d(TAG, "add clicked");
+				startActivity(new Intent(this, SendActivity.class));
 				break;
 			default:
 				Log.w(TAG, v.getId() + " not yet implemented");

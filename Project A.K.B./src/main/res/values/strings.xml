@@ -13,4 +13,14 @@
     <string name="prefTitle_API_URL" translatable="false">API URL</string>
     <string name="prefsummary_API_URL">Do not touch! Default — http://roctbb.net:1337/api</string>
     <string name="MainActivity_quit">Quit</string>
+    <string-array name="SendLayout_spinner">
+        <item>Character</item>
+        <item>Object</item>
+        <item>Story</item>
+    </string-array>
+    <string name="SendLayout_spinner_desc">Content type</string>
+    <string name="SettingsLayout_add">Add…</string>
+    <string name="SendLayout_textView_description_character" translatable="false">Чтобы название вашего персонажа соответствовало всем стилям и канонам, пишите имена нарицательные со строчной буквы, а собственные - с заглавной. Желательно использовать персонажей мужского рода в именительном падеже, например: поручик Ржевский, студент, Альберт Эйнштейн.</string>
+    <string name="SendLayout_textView_description_object" translatable="false">Чтобы название вашего предмета соответствовало всем стилям и канонам, пишите имена нарицательные со строчной буквы, а собственные - с заглавной. Желательно использовать предметы женского рода в винительном падеже, например: горящую машину, свинью, бутылку Клейна.</string>
+    <string name="SendLayout_textView_description_story" translatable="false">Чтобы шаблон вашей истории соответствовал всем стилям и канонам, соблюдайте как можно больше правил русского языка. Используйте трафареты {pers}, {pers1}, … {pers9} для вставки в историю персонажей, а также трафареты {obj}, {obj1}, … {obj9} для вставки в историю предметов, например: Если {pers1} будет долго смотреть на {obj1}, то придет {pers2}, достанет свою {obj2} и долбанет его ей по башке.</string>
 </resources>

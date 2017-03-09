@@ -7,8 +7,8 @@ android {
         applicationId "ru.saber_nyan.projectakb"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 20
-        versionName "0.2.0a"
+        versionCode 21
+        versionName "0.2.1a"
     }
     buildTypes {
         release {
