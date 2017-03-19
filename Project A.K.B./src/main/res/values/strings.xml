@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ The Unlicense 2017.
+  ~ This is free and unencumbered software released into the public domain.
+  ~
+  ~ Anyone is free to copy, modify, publish, use, compile, sell, or
+  ~ distribute this software, either in source code form or as a compiled
+  ~ binary, for any purpose, commercial or non-commercial, and by any
+  ~ means.
+  ~
+  ~ In jurisdictions that recognize copyright laws, the author or authors
+  ~ of this software dedicate any and all copyright interest in the
+  ~ software to the public domain. We make this dedication for the benefit
+  ~ of the public at large and to the detriment of our heirs and
+  ~ successors. We intend this dedication to be an overt act of
+  ~ relinquishment in perpetuity of all present and future rights to this
+  ~ software under copyright law.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  ~ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  ~ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  ~ IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  ~ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+  ~ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  ~ OTHER DEALINGS IN THE SOFTWARE.
+  ~
+  ~ For more information, please refer to < http://unlicense.org >
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 <resources>
     <string name="MainActivity_db_error">Database is corrupt. Please contact &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
     <string name="MainActivity_temp_disabled_error">The service is temporarily disabled. Please try again later or contact &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
@@ -11,7 +39,7 @@
     <string name="prefDef_API_URL" translatable="false">http://roctbb.net:1337/api</string>
     <string name="prefTitle_settings">Settings</string>
     <string name="prefTitle_API_URL" translatable="false">API URL</string>
-    <string name="prefsummary_API_URL">Do not touch! Default — http://roctbb.net:1337/api</string>
+    <string name="prefSummary_API_URL">Do not touch! Default — http://roctbb.net:1337/api</string>
     <string name="MainActivity_quit">Quit</string>
     <string-array name="SendLayout_spinner">
         <item>Character</item>
@@ -20,7 +48,14 @@
     </string-array>
     <string name="SendLayout_spinner_desc">Content type</string>
     <string name="SettingsLayout_add">Add…</string>
-    <string name="SendLayout_textView_description_character" translatable="false">Чтобы название вашего персонажа соответствовало всем стилям и канонам, пишите имена нарицательные со строчной буквы, а собственные - с заглавной. Желательно использовать персонажей мужского рода в именительном падеже, например: поручик Ржевский, студент, Альберт Эйнштейн.</string>
-    <string name="SendLayout_textView_description_object" translatable="false">Чтобы название вашего предмета соответствовало всем стилям и канонам, пишите имена нарицательные со строчной буквы, а собственные - с заглавной. Желательно использовать предметы женского рода в винительном падеже, например: горящую машину, свинью, бутылку Клейна.</string>
+    <string name="SendLayout_textView_description_character" translatable="false">Чтобы название вашего персонажа соответствовало всем стилям и канонам, пишите имена нарицательные со строчной буквы, а собственные — с заглавной. Желательно использовать персонажей мужского рода в именительном падеже, например: поручик Ржевский, студент, Альберт Эйнштейн.</string>
+    <string name="SendLayout_textView_description_object" translatable="false">Чтобы название вашего предмета соответствовало всем стилям и канонам, пишите имена нарицательные со строчной буквы, а собственные — с заглавной. Желательно использовать предметы женского рода в винительном падеже, например: горящую машину, свинью, бутылку Клейна.</string>
     <string name="SendLayout_textView_description_story" translatable="false">Чтобы шаблон вашей истории соответствовал всем стилям и канонам, соблюдайте как можно больше правил русского языка. Используйте трафареты {pers}, {pers1}, … {pers9} для вставки в историю персонажей, а также трафареты {obj}, {obj1}, … {obj9} для вставки в историю предметов, например: Если {pers1} будет долго смотреть на {obj1}, то придет {pers2}, достанет свою {obj2} и долбанет его ей по башке.</string>
+    <string name="SendLayout_editText_hint_yourText">Your text…</string>
+    <string name="SendLayout_button_text_send">Send!</string>
+    <string name="SendActivity_sending">Sending…</string>
+    <string name="SendActivity_error"><![CDATA[Error occurred while sending:<br>%s]]></string>
+    <string name="SendActivity_sent">Sent!</string>
+    <string name="SendActivity_error_title">Error!</string>
+    <string name="SendActivity_noText">Write something!</string>
 </resources>
