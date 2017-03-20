@@ -53,4 +53,5 @@
     <string name="SendActivity_sent">Отправлено!</string>
     <string name="SendActivity_error_title">Ошибка!</string>
     <string name="SendActivity_noText">Напишите что-нибудь!</string>
+    <string name="widget_touchToUpdate">Нажмите для обновления!</string>
 </resources>

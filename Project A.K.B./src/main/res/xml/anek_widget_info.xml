@@ -27,47 +27,9 @@
   ~ For more information, please refer to < http://unlicense.org >
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="ru.saber_nyan.projectakb">
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <application
-        android:allowBackup="false"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/prefTitle_settings"/>
-        <activity
-            android:name=".SendActivity"
-            android:label="@string/SettingsLayout_add"/>
-
-        <service
-            android:name=".RefreshService"
-            android:enabled="true"
-            android:exported="false"/>
-
-        <receiver android:name=".AnekWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/anek_widget_info"/>
-        </receiver>
-    </application>
-
-</manifest>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:initialLayout="@layout/anek_widget"
+                    android:minHeight="40dp"
+                    android:minWidth="110dp"
+                    android:resizeMode="horizontal|vertical"
+                    android:updatePeriodMillis="1800000"/>

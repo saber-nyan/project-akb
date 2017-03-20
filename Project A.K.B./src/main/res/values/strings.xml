@@ -58,4 +58,5 @@
     <string name="SendActivity_sent">Sent!</string>
     <string name="SendActivity_error_title">Error!</string>
     <string name="SendActivity_noText">Write something!</string>
+    <string name="widget_touchToUpdate">Touch to update!</string>
 </resources>
