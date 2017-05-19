@@ -28,9 +28,9 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <resources>
-    <string name="MainActivity_db_error">База данных повреждена. Пожалуйста, свяжитесь с &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
-    <string name="MainActivity_temp_disabled_error">Сервис временно отключен. Пожалуйста, попробуйте позже или свяжитесь с &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
-    <string name="MainActivity_other_error">Произошла ошибка при обновлении. Детали:&lt;br/>%s</string>
+    <string name="MainActivity_db_error"><![CDATA[База данных повреждена. Пожалуйста, свяжитесь с <a href=http://vk.com/arthur_khazbs>Arthur Khazbs</a>.]]></string>
+    <string name="MainActivity_temp_disabled_error"><![CDATA[Сервис временно отключен. Пожалуйста, попробуйте позже или свяжитесь с <a href=http://vk.com/arthur_khazbs>Arthur Khazbs</a>.]]></string>
+    <string name="MainActivity_other_error">Произошла ошибка при обновлении. Детали:<br />%s</string>
     <string name="MainActivity_refreshing">Обновление…</string>
     <string name="MainLayout_add">Добавить</string>
     <string name="MainLayout_nothing_to_show">Нечего показать. Пожалуйста, обновите!</string>
@@ -54,4 +54,8 @@
     <string name="SendActivity_error_title">Ошибка!</string>
     <string name="SendActivity_noText">Напишите что-нибудь!</string>
     <string name="widget_touchToUpdate">Нажмите для обновления!</string>
+    <string name="SendActivity_dialog_msg1part">Вы точно хотите отправить текст в раздел \"%s\"?</string>
+    <string name="SendActivity_dialog_msg2part1">Персонажи</string>
+    <string name="SendActivity_dialog_msg2part2">Предметы</string>
+    <string name="SendActivity_dialog_msg2part3">Истории</string>
 </resources>

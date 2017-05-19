@@ -30,13 +30,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.0-rc2"
     defaultConfig {
         applicationId "ru.saber_nyan.projectakb"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 26
-        versionName '0.2.6b'
+        versionCode 27
+        versionName '0.2.7a'
     }
     buildTypes {
         release {
@@ -53,5 +53,5 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
 }

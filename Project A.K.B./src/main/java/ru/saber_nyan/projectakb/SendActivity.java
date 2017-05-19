@@ -28,10 +28,12 @@
 
 package ru.saber_nyan.projectakb;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
@@ -88,6 +90,21 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 		}
 	};
 
+
+	@SuppressWarnings("ConstantConditions")
+	private void doKeepDialog(Dialog dialog) {
+		try {
+			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+			lp.copyFrom(dialog.getWindow().getAttributes());
+			lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+			lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+			dialog.getWindow().setAttributes(lp);
+		} catch (Exception e) {
+			Log.e(TAG, "doKeep failed!", e);
+		}
+	}
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -139,7 +156,44 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button_send:
-				send(editText_story.getText().toString(), spinner_mode.getSelectedItemPosition());
+				String message = getString(R.string.SendActivity_dialog_msg1part);
+				String addition;
+				switch ((int) spinner_mode.getSelectedItemId()) {
+					case SPINNER_ID_CHARACTER:
+						addition = getString(R.string.SendActivity_dialog_msg2part1);
+						break;
+
+					case SPINNER_ID_OBJECT:
+						addition = getString(R.string.SendActivity_dialog_msg2part2);
+						break;
+
+					case SPINNER_ID_STORY:
+						addition = getString(R.string.SendActivity_dialog_msg2part3);
+						break;
+
+					default:
+						addition = "";
+						Log.wtf(TAG, "unexpected ID!");
+						break;
+				}
+				message = String.format(message, addition);
+
+				AlertDialog dialog = new AlertDialog.Builder(this)
+						.setTitle("Проверьте все еще раз!")
+						.setMessage(message)
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setCancelable(false)
+						.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								send(editText_story.getText().toString(), spinner_mode.getSelectedItemPosition());
+							}
+						})
+						.setNegativeButton(android.R.string.no, null)
+						.create();
+				dialog.show();
+				doKeepDialog(dialog);
+
 				break;
 			default:
 				Log.w(TAG, v.getId() + " not yet implemented");
@@ -168,24 +222,12 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 		task.execute(id, text, String.valueOf(mode), URL_API_PUSH);
 	}
 
+	@SuppressLint("StaticFieldLeak")
 	private class SendTask extends AsyncTask<String, Void, Object> {
 
 		private static final String JSON_KEY_STATUS = "status";
 		private final String TAG = SendTask.class.getSimpleName();
 		private ProgressDialog progressDialog;
-
-		@SuppressWarnings("ConstantConditions")
-		private void doKeepDialog(Dialog dialog) {
-			try {
-				WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-				lp.copyFrom(dialog.getWindow().getAttributes());
-				lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-				lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-				dialog.getWindow().setAttributes(lp);
-			} catch (Exception e) {
-				Log.e(TAG, "doKeep failed!", e);
-			}
-		}
 
 		@Override
 		protected void onPreExecute() {

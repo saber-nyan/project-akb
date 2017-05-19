@@ -28,9 +28,9 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <resources>
-    <string name="MainActivity_db_error">Database is corrupt. Please contact &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
-    <string name="MainActivity_temp_disabled_error">The service is temporarily disabled. Please try again later or contact &lt;a href=http://vk.com/arthur_khazbs>Arthur Khazbs&lt;/a>.</string>
-    <string name="MainActivity_other_error">An error occurred while refreshing. Details:&lt;br/>%s</string>
+    <string name="MainActivity_db_error"><![CDATA[Database is corrupt. Please contact <a href=http://vk.com/arthur_khazbs>Arthur Khazbs</a>.]]></string>
+    <string name="MainActivity_temp_disabled_error"><![CDATA[The service is temporarily disabled. Please try again later or contact <a href=http://vk.com/arthur_khazbs>Arthur Khazbs</a>.]]></string>
+    <string name="MainActivity_other_error">An error occurred while refreshing. Details:<br />%s</string>
     <string name="MainActivity_refreshing">Refreshing…</string>
     <string name="MainLayout_add">Add</string>
     <string name="MainLayout_nothing_to_show">Nothing to show. Please refresh!</string>
@@ -59,4 +59,8 @@
     <string name="SendActivity_error_title">Error!</string>
     <string name="SendActivity_noText">Write something!</string>
     <string name="widget_touchToUpdate">Touch to update!</string>
+    <string name="SendActivity_dialog_msg1part">Are you sure you want to send text to the \"%s\" section?</string>
+    <string name="SendActivity_dialog_msg2part1">Characters</string>
+    <string name="SendActivity_dialog_msg2part2">Objects</string>
+    <string name="SendActivity_dialog_msg2part3">Stories</string>
 </resources>
