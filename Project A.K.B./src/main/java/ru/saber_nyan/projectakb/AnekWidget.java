@@ -46,8 +46,10 @@ import static ru.saber_nyan.projectakb.MainActivity.BROADCAST_TEXT_TAG;
 
 public class AnekWidget extends AppWidgetProvider {
 
+	public final static String EXTRA_ANEK = "EXTRA_ANEK";
 	public final static String TAG = AnekWidget.class.getSimpleName();
 	public final static String INTENT_UPDATE_PRESSED_ACTION = "plsUpdate";
+	public final static String INTENT_MORE_PRESSED_ACTION = "plsMoar";
 	public String anek;
 	public Boolean isError = false;
 
@@ -71,9 +73,13 @@ public class AnekWidget extends AppWidgetProvider {
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.anek_widget);
 
 		Intent updateIntent = new Intent(context, AnekWidget.class);
+		Intent moreIntent = new Intent(context, AnekWidget.class);
 		updateIntent.setAction(INTENT_UPDATE_PRESSED_ACTION);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, updateIntent, 0);
-		views.setOnClickPendingIntent(R.id.appwidget_textView_anek, pendingIntent);
+		moreIntent.setAction(INTENT_MORE_PRESSED_ACTION);
+		PendingIntent updatePendingIntent = PendingIntent.getBroadcast(context, 0, updateIntent, 0);
+		PendingIntent morePendingIntent = PendingIntent.getBroadcast(context, 0, moreIntent, 0);
+		views.setOnClickPendingIntent(R.id.appwidget_textView_anek, updatePendingIntent);
+		views.setOnClickPendingIntent(R.id.button_more, morePendingIntent);
 		views.setTextViewText(R.id.appwidget_textView_anek, anek);
 
 		// Instruct the widget manager to update the widget
@@ -109,8 +115,20 @@ public class AnekWidget extends AppWidgetProvider {
 		super.onReceive(context, intent);
 		Log.d(TAG, "onReceive called!\n" +
 				"\tAction: " + intent.getAction());
-		if (intent.getAction().equals(INTENT_UPDATE_PRESSED_ACTION)) {
-			context.startService(new Intent(context, RefreshService.class));
+//		if (intent.getAction().equals(INTENT_UPDATE_PRESSED_ACTION)) {
+//			context.startService(new Intent(context, RefreshService.class));
+//		}
+		switch (intent.getAction()) {
+			case INTENT_UPDATE_PRESSED_ACTION:
+				context.startService(new Intent(context, RefreshService.class));
+				break;
+
+			case INTENT_MORE_PRESSED_ACTION:
+				Intent dialogIntent = new Intent(context, WidgetDialogActivity.class);
+				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				dialogIntent.putExtra(EXTRA_ANEK, anek);
+				context.startActivity(dialogIntent);
+				break;
 		}
 	}
 

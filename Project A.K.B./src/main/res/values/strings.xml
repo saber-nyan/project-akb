@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~ The Unlicense 2017.
   ~ This is free and unencumbered software released into the public domain.
   ~
@@ -63,4 +62,5 @@
     <string name="SendActivity_dialog_msg2part1">Characters</string>
     <string name="SendActivity_dialog_msg2part2">Objects</string>
     <string name="SendActivity_dialog_msg2part3">Stories</string>
+    <string name="widget_dots" translatable="false">•••</string>
 </resources>

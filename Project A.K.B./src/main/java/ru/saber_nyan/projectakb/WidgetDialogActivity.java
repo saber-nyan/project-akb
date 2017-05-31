@@ -26,32 +26,35 @@
  * For more information, please refer to < http://unlicense.org >
  ******************************************************************************/
 
-apply plugin: 'com.android.application'
+package ru.saber_nyan.projectakb;
 
-android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0-rc2"
-    defaultConfig {
-        applicationId "ru.saber_nyan.projectakb"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 30
-        versionName '0.3.0a'
-    }
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
-}
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+import static ru.saber_nyan.projectakb.AnekWidget.EXTRA_ANEK;
+
+public class WidgetDialogActivity extends AppCompatActivity {
+
+	TextView anekDialog;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_widget_dialog);
+		anekDialog = (TextView) findViewById(R.id.textView_anek_dialog);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		anekDialog.setText(getIntent().getStringExtra(EXTRA_ANEK)); // FIXME: Строка приходит пустой...
+		findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+	}
 }
