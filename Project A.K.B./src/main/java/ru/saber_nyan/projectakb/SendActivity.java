@@ -37,9 +37,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -73,16 +73,15 @@ import static ru.saber_nyan.projectakb.RefreshService.URL_API_DEFAULT;
 
 public class SendActivity extends AppCompatActivity implements View.OnClickListener {
 
-	public static final String TAG = SendActivity.class.getSimpleName();
-	public static final int SPINNER_ID_CHARACTER = 0;
-	public static final int SPINNER_ID_OBJECT = 1;
-	public static final int SPINNER_ID_STORY = 2;
-	public Spinner spinner_mode;
-	public TextView textView_mode_desc;
-	public EditText editText_story;
-	private String BROADCAST_TAG = "send done";
-
-	private BroadcastReceiver sendReceiver = new BroadcastReceiver() {
+	private static final String TAG = SendActivity.class.getSimpleName();
+	private static final int SPINNER_ID_CHARACTER = 0;
+	private static final int SPINNER_ID_OBJECT = 1;
+	private static final int SPINNER_ID_STORY = 2;
+	private final String BROADCAST_TAG = "send done";
+	private Spinner spinner_mode;
+	private TextView textView_mode_desc;
+	private EditText editText_story;
+	private final BroadcastReceiver sendReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			editText_story.setText("");
@@ -207,11 +206,8 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 			return;
 		}
 		SendTask task = new SendTask();
-		String id = "android_" + Build.BOARD.length() + Build.BRAND.length() +
-				Build.DEVICE.length() + Build.DISPLAY.length() + Build.HOST.length() +
-				Build.ID.length() + Build.MANUFACTURER.length() + Build.MODEL.length() +
-				Build.PRODUCT.length() + Build.TAGS.length() + Build.TYPE.length() +
-				Build.USER.length();
+		@SuppressLint("HardwareIds")
+		String id = "android_" + Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 		String URL_API_PUSH = PreferenceManager.getDefaultSharedPreferences(this)
 				.getString(getString(R.string.prefKey_API_URL), URL_API_DEFAULT) + "/push";
 		Log.i(TAG, "Sending...\n" +

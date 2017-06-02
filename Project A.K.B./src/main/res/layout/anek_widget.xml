@@ -26,32 +26,35 @@
   ~ For more information, please refer to < http://unlicense.org >
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
                 android:layout_height="match_parent"
-    android:background="#70000000">
+    android:background="#70000000"
+    android:orientation="vertical"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/appwidget_textView_anek"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
-        android:padding="5dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="4dp"
         android:text="@string/widget_touchToUpdate"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
         android:id="@+id/button_more"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:layout_alignParentBottom="true"
         android:background="#70000000"
         android:text="@string/widget_dots"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
-</RelativeLayout>
+</LinearLayout>

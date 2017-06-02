@@ -44,15 +44,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-	public static final String TAG = MainActivity.class.getSimpleName();
 	public static final String BROADCAST_TAG = "service result";
 	public static final String BROADCAST_ERROR_TAG = "isError";
 	public static final String BROADCAST_TEXT_TAG = "text";
-	public static final int ID_MENU_SETTINGS = 0;
-	public static final int ID_MENU_QUIT = 1;
-	public TextView textView_anek;
+	private static final String TAG = MainActivity.class.getSimpleName();
+	private static final int ID_MENU_SETTINGS = 0;
+	private static final int ID_MENU_QUIT = 1;
+	private TextView textView_anek;
 	@SuppressWarnings("deprecation")
-	private BroadcastReceiver refreshReceiver = new BroadcastReceiver() {
+	private final BroadcastReceiver refreshReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Log.i(TAG, "broadcast received!\n" +

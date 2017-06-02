@@ -30,5 +30,4 @@
 <resources>
     <dimen name="layoutPadding">7dp</dimen>
     <dimen name="buttonPadding">20dp</dimen>
-    <dimen name="widget_margin">8dp</dimen>
 </resources>

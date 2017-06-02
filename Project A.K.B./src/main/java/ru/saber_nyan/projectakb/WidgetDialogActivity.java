@@ -28,16 +28,18 @@
 
 package ru.saber_nyan.projectakb;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import static ru.saber_nyan.projectakb.AnekWidget.EXTRA_ANEK;
+import static ru.saber_nyan.projectakb.AnekWidget.PREF_KEY_ANEK;
+import static ru.saber_nyan.projectakb.AnekWidget.PREF_NAME_ANEK;
 
 public class WidgetDialogActivity extends AppCompatActivity {
 
-	TextView anekDialog;
+	private TextView anekDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,11 @@ public class WidgetDialogActivity extends AppCompatActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		anekDialog.setText(getIntent().getStringExtra(EXTRA_ANEK)); // FIXME: Строка приходит пустой...
+//		String anekExtra = getIntent().getStringExtra(EXTRA_ANEK);
+//		Log.i(TAG, "onStart called, string:\n\t" +
+//				anekExtra);
+		SharedPreferences prefs = getSharedPreferences(PREF_NAME_ANEK, MODE_PRIVATE);
+		anekDialog.setText(prefs.getString(PREF_KEY_ANEK, getString(R.string.AnekWidget_error))); // FIX!ME: Строка приходит пустой...
 		findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

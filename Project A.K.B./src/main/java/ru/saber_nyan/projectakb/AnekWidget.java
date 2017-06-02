@@ -28,6 +28,7 @@
 
 package ru.saber_nyan.projectakb;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -36,6 +37,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -46,27 +48,36 @@ import static ru.saber_nyan.projectakb.MainActivity.BROADCAST_TEXT_TAG;
 
 public class AnekWidget extends AppWidgetProvider {
 
-	public final static String EXTRA_ANEK = "EXTRA_ANEK";
-	public final static String TAG = AnekWidget.class.getSimpleName();
-	public final static String INTENT_UPDATE_PRESSED_ACTION = "plsUpdate";
-	public final static String INTENT_MORE_PRESSED_ACTION = "plsMoar";
-	public String anek;
-	public Boolean isError = false;
 
-	private BroadcastReceiver refreshReceiver = new BroadcastReceiver() {
+	public final static String PREF_NAME_ANEK = "anekPrefs";
+	public final static String PREF_KEY_ANEK = "anek";
+	private final static String TAG = AnekWidget.class.getSimpleName();
+	private final static String INTENT_UPDATE_PRESSED_ACTION = "plsUpdate";
+	private final static String INTENT_MORE_PRESSED_ACTION = "plsMoar";
+	private final static String PREF_KEY_ERROR = "error";
+	private SharedPreferences prefs;
+
+	private final BroadcastReceiver refreshReceiver = new BroadcastReceiver() {
+		@SuppressLint("ApplySharedPref")
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			String anek = intent.getStringExtra(BROADCAST_TEXT_TAG);
+			boolean isError = intent.getBooleanExtra(BROADCAST_ERROR_TAG, true);
 			Log.i(TAG, "broadcast received!\n" +
-					"\tContext: " + context.toString());
-			isError = intent.getBooleanExtra(BROADCAST_ERROR_TAG, true);
-			anek = intent.getStringExtra(BROADCAST_TEXT_TAG);
+					"\tText: " + anek +
+					"\tError: " + isError);
+			SharedPreferences.Editor prefEditor = prefs.edit();
+			prefEditor.putString(PREF_KEY_ANEK, anek);
+			prefEditor.putBoolean(PREF_KEY_ERROR, isError);
+			prefEditor.commit();
 			updateNow(context);
 		}
 	};
 
-	void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-						 int appWidgetId) {
-		Log.i(TAG, "update widget #" + appWidgetId + "!");
+	private void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+								 int appWidgetId) {
+		boolean isError = prefs.getBoolean(PREF_KEY_ERROR, true);
+		String anek = prefs.getString(PREF_KEY_ANEK, null);
 		Log.i(TAG, "Service error? " + String.valueOf(isError) + "\n" +
 				"\tText: " + anek);
 		// Construct the RemoteViews object
@@ -80,13 +91,20 @@ public class AnekWidget extends AppWidgetProvider {
 		PendingIntent morePendingIntent = PendingIntent.getBroadcast(context, 0, moreIntent, 0);
 		views.setOnClickPendingIntent(R.id.appwidget_textView_anek, updatePendingIntent);
 		views.setOnClickPendingIntent(R.id.button_more, morePendingIntent);
-		views.setTextViewText(R.id.appwidget_textView_anek, anek);
+
+		if (isError) {
+			views.setTextViewText(R.id.appwidget_textView_anek, context.getString(R.string.AnekWidget_error));
+		} else if (anek != null) {
+			views.setTextViewText(R.id.appwidget_textView_anek, anek);
+		}
 
 		// Instruct the widget manager to update the widget
 		appWidgetManager.updateAppWidget(appWidgetId, views);
+		Log.i(TAG, "updated widget #" + appWidgetId + "!");
 	}
 
-	public void updateNow(Context context) {
+	private void updateNow(Context context) {
+		Log.v(TAG, "force update!");
 		AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 		this.onUpdate(context, widgetManager,
 				widgetManager.getAppWidgetIds(new ComponentName(context, AnekWidget.class)));
@@ -94,19 +112,26 @@ public class AnekWidget extends AppWidgetProvider {
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+		prefs = context.getSharedPreferences(PREF_NAME_ANEK, Context.MODE_PRIVATE);
 		// There may be multiple widgets active, so update all of them
 		for (int appWidgetId : appWidgetIds) {
+			Log.v(TAG, "updating widget #" + appWidgetId);
 			updateAppWidget(context, appWidgetManager, appWidgetId);
 		}
 	}
 
+	@SuppressLint("ApplySharedPref")
 	@Override
 	public void onEnabled(Context context) {
+		prefs = context.getSharedPreferences(PREF_NAME_ANEK, Context.MODE_PRIVATE);
 		Log.v(TAG, "onEnabled called!\n" +
 				"\tContext: " + context);
 		LocalBroadcastManager.getInstance(context).registerReceiver(refreshReceiver,
 				new IntentFilter(BROADCAST_TAG));
-		anek = context.getString(R.string.widget_touchToUpdate);
+		SharedPreferences.Editor prefEditor = prefs.edit();
+		prefEditor.putString(PREF_KEY_ANEK, context.getString(R.string.widget_touchToUpdate));
+		prefEditor.putBoolean(PREF_KEY_ERROR, false);
+		prefEditor.commit();
 		this.updateNow(context);
 	}
 
@@ -115,9 +140,7 @@ public class AnekWidget extends AppWidgetProvider {
 		super.onReceive(context, intent);
 		Log.d(TAG, "onReceive called!\n" +
 				"\tAction: " + intent.getAction());
-//		if (intent.getAction().equals(INTENT_UPDATE_PRESSED_ACTION)) {
-//			context.startService(new Intent(context, RefreshService.class));
-//		}
+
 		switch (intent.getAction()) {
 			case INTENT_UPDATE_PRESSED_ACTION:
 				context.startService(new Intent(context, RefreshService.class));
@@ -126,7 +149,9 @@ public class AnekWidget extends AppWidgetProvider {
 			case INTENT_MORE_PRESSED_ACTION:
 				Intent dialogIntent = new Intent(context, WidgetDialogActivity.class);
 				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				dialogIntent.putExtra(EXTRA_ANEK, anek);
+//				Log.d(TAG, "putting string:\n\t" +
+//						anek);
+//				dialogIntent.putExtra(EXTRA_ANEK, anek);
 				context.startActivity(dialogIntent);
 				break;
 		}
@@ -134,6 +159,7 @@ public class AnekWidget extends AppWidgetProvider {
 
 	@Override
 	public void onDisabled(Context context) {
+		Log.v(TAG, "widget deleted...");
 		LocalBroadcastManager.getInstance(context).unregisterReceiver(refreshReceiver);
 	}
 }

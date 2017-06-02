@@ -63,4 +63,5 @@
     <string name="SendActivity_dialog_msg2part2">Objects</string>
     <string name="SendActivity_dialog_msg2part3">Stories</string>
     <string name="widget_dots" translatable="false">•••</string>
+    <string name="AnekWidget_error">An error has occurred. Please check the connection and try again later.</string>
 </resources>

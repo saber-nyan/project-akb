@@ -53,7 +53,7 @@
             android:label="@string/SettingsLayout_add" />
         <activity
             android:name=".WidgetDialogActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/AppTheme.Dialog" />
 
         <service
             android:name=".RefreshService"

@@ -28,6 +28,7 @@
 
 package ru.saber_nyan.projectakb;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -48,7 +49,7 @@ import java.net.URL;
 
 public class RefreshService extends Service {
 
-	public static final String TAG = RefreshService.class.getSimpleName();
+	private static final String TAG = RefreshService.class.getSimpleName();
 	public static String URL_API_DEFAULT;
 
 	public RefreshService() {
@@ -82,6 +83,7 @@ public class RefreshService extends Service {
 		stopSelf();
 	}
 
+	@SuppressLint("StaticFieldLeak")
 	private class DownloadTask extends AsyncTask<String, Void, Void> {
 
 		private final String TAG = DownloadTask.class.getSimpleName();
